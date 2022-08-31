@@ -7,16 +7,19 @@ const todoList = () => {
     all[index].completed = true;
   };
 
+  let current_date = new Date();
+  current_date = current_date.toISOString().split('T')[0];
+
   const overdue = () => {
-    return all.filter((item) => item.dueDate === yesterday);
+    return all.filter((item) => item.dueDate < current_date);
   };
 
   const dueToday = () => {
-    return all.filter((item) => item.dueDate === today);
+    return all.filter((item) => item.dueDate == current_date);
   };
 
   const dueLater = () => {
-    return all.filter((item) => item.dueDate === tomorrow);
+    return all.filter((item) => item.dueDate > current_date);
   };
 
   const toDisplayableList = (list) => {
